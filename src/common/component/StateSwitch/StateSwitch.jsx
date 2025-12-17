@@ -9,6 +9,7 @@ const BoxSwitch = styled(Switch)(({ theme }) => ({
     width: '250px',
     height: '50px',
     padding: '5px',
+  
     '& .MuiSwitch-switchBase': {
         margin: 3.5,
         padding: 0,
@@ -47,7 +48,7 @@ const BoxSwitch = styled(Switch)(({ theme }) => ({
     },
 }));
 
-export default function StateSwitch({singleIcon}) {
+export default function StateSwitch({singleIcon, left}) {
     const [checked, setChecked] = React.useState(true);
 
     const handleChange = (event) => {
@@ -55,7 +56,7 @@ export default function StateSwitch({singleIcon}) {
     };
 
     return (
-        <div style={{ position: 'relative', width: '250px' }}>
+        <div style={{ position: 'relative', width: '250px', left:left}}>
             <Box sx={{ marginBottom: 0.5, marginLeft: 1 }}>
                 <FormHelperText>Marital Status</FormHelperText>
             </Box>
