@@ -68,7 +68,6 @@ export default function MyDetailThird() {
                 processVal={68}
             />
 
-            {/* Header */}
             <Box className="mydetailthird-header">
                 <Typography variant="h6">My name is {userName}</Typography>
                 <Typography variant="h6">And I am {gender} of {age} years old.</Typography>
@@ -76,14 +75,12 @@ export default function MyDetailThird() {
                 {!isMarried && <Typography variant="h6">I am single</Typography>}
             </Box>
 
-            {/* Question */}
             <Box className="mydetailthird-question">
                 <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
                     {isMarried ? 'I have (Kids)' : 'I am Single'}
                 </Typography>
             </Box>
 
-            {/* Kids Form */}
             {isMarried && (
                 <Box className="mydetailthird-form">
                     <ChildSlider
@@ -111,7 +108,6 @@ export default function MyDetailThird() {
                 </Box>
             )}
 
-            {/* Next Button */}
             <Box className="mydetailthird-button">
                 <ButtonAll
                     text="Next ->"

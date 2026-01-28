@@ -52,7 +52,6 @@
     margin-top: auto;
 }
 
-/* Responsive adjustments */
 @media (max-width: 1024px) {
     .mydetailthird-header, .mydetailthird-question {
         max-width: 400px;
