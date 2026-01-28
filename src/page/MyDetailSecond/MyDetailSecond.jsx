@@ -54,10 +54,10 @@ export default function MyDetailSecond() {
 
             <Box className="mydetailsecond-header">
                 <Typography variant="h6" gutterBottom>
-                    My name is {userName}
+                    My name is <span style={{ color: '#FE5000' }}>{userName}</span>
                 </Typography>
                 <Typography variant="h6">
-                    And I am {gender} of {age} years old.
+                    And I am <span style={{ color: '#FE5000' }}>{gender}</span> of <span style={{ color: '#FE5000' }}>{age} years old.</span>
                 </Typography>
             </Box>
 
