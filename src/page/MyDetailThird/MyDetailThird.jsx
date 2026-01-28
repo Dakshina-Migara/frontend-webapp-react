@@ -26,7 +26,6 @@ export default function MyDetailThird() {
     const isMarried = formData.isMarried || false;
 
     const [numKids, setNumKids] = useState(formData.kids?.length || 0);
-
     const [kids, setKids] = useState(formData.kids || []);
 
     useEffect(() => {
@@ -47,17 +46,13 @@ export default function MyDetailThird() {
 
     const isValid = !isMarried
         ? true
-        : kids
-            .slice(0, numKids)
-            .every(kid => kid.name && kid.age);
+        : kids.slice(0, numKids).every(kid => kid.name && kid.age);
 
     const handleNext = () => {
         if (!isValid) return;
-
         dispatch(saveData({
             kids: isMarried ? kids.slice(0, numKids) : []
         }));
-
         dispatch(nextStep());
         navigate('/sixpage');
     };
@@ -68,49 +63,40 @@ export default function MyDetailThird() {
 
             <ProcessBar
                 processText={'My Details'}
-                backtap={() => console.log('halooooo')}
+                backtap={() => console.log('back tapped')}
                 processStep={2}
                 processVal={68}
             />
 
-            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 3, gap: '15px' }}>
+            {/* Header */}
+            <Box className="mydetailthird-header">
                 <Typography variant="h6">My name is {userName}</Typography>
                 <Typography variant="h6">And I am {gender} of {age} years old.</Typography>
-                <Typography variant="h6">
-                    {isMarried ? `I am married to ${spouseName}` : 'You are single.'}
-                </Typography>
+                {isMarried && <Typography variant="h6">I am married to {spouseName}</Typography>}
+                {!isMarried && <Typography variant="h6">I am single</Typography>}
             </Box>
 
-            <Box sx={{
-                maxWidth: 500,
-                marginLeft: '450px',
-                marginTop: '30px',
-                display: 'flex',
-                flexDirection: 'column',
-            }}>
-                <Typography
-                    variant="h5"
-                    gutterBottom
-                    sx={{ fontWeight: 'bold' }}
-                >
+            {/* Question */}
+            <Box className="mydetailthird-question">
+                <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
                     {isMarried ? 'I have (Kids)' : 'I am Single'}
                 </Typography>
             </Box>
 
+            {/* Kids Form */}
             {isMarried && (
-                <Box className="pageContent">
-                    <Box sx={{ marginTop: 4, display: 'flex', justifyContent: 'center' }}>
-                        <ChildSlider
-                            value={numKids}
-                            onChange={(event, value) => setNumKids(value)}
-                        />
-                    </Box>
+                <Box className="mydetailthird-form">
+                    <ChildSlider
+                        value={numKids}
+                        onChange={(event, value) => setNumKids(value)}
+                    />
 
                     {kids.slice(0, numKids).map((kid, index) => (
-                        <Box key={index} sx={{ marginTop: 2, display: 'flex', gap: 2, justifyContent: 'center' }}>
+                        <Box key={index} className="mydetailthird-kidrow">
                             <TextArea
                                 textFieldText={`My kid ${index + 1} is`}
                                 startIcon={<EmojiPeopleIcon />}
+                                width="100%"
                                 value={kid.name}
                                 onChange={(val) => handleKidChange(index, 'name', val.target.value)}
                             />
@@ -125,14 +111,14 @@ export default function MyDetailThird() {
                 </Box>
             )}
 
-            
-            <Box sx={{ marginTop: '50px', display: 'flex', justifyContent: 'center', marginBottom: '120px', marginLeft: '250px' }}>
+            {/* Next Button */}
+            <Box className="mydetailthird-button">
                 <ButtonAll
                     text="Next ->"
                     accountButton={handleNext}
                     backcolor="#FE5000"
                     textColor="white"
-                    width="100px"
+                    width="120px"
                     height="40px"
                     disabled={!isValid}
                 />
